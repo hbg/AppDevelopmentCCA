@@ -9,7 +9,7 @@ import Signin from './signin'
 import { NextAuth } from 'next-auth/client'
 import Cookies from 'universal-cookie'
 import Package from '../package'
-import Styles from '../css/index.scss'
+import Styles from '../css/index.scss' // Will load custom scss later
 
 export default class extends React.Component {
 
@@ -31,23 +31,9 @@ export default class extends React.Component {
       modal: false,
       providers: null
     }
-    this.toggleModal = this.toggleModal.bind(this)
+    // this.toggleModal = this.toggleModal.bind(this)
   }
 
-  async toggleModal(e) {
-    if (e) e.preventDefault()
-
-    // Save current URL so user is redirected back here after signing in
-    if (this.state.modal !== true) {
-      const cookies = new Cookies()
-      cookies.set('redirect_url', window.location.pathname, { path: '/' })
-    }
-
-    this.setState({
-      providers: this.state.providers || await NextAuth.providers(),
-      modal: !this.state.modal
-    })
-  }
 
   render() {
     return (
@@ -55,38 +41,49 @@ export default class extends React.Component {
         <Head>
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <title>{this.props.title || 'Next.js Starter Project'}</title>
+          <title>{this.props.title }</title>
           <style dangerouslySetInnerHTML={{__html: Styles}}/>
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js"/>
+          <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+          <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"></link>
+          <script type = "text/javascript"  src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
         </Head>
-        <Navbar light className="navbar navbar-expand-md pt-3 pb-3">
+        <Navbar light className="navbar navbar-expand-md pt-3 pb-3 red darken-3">
           <Link prefetch href="/">
             <NavbarBrand href="/">
-              <img className="icon ion-md-home mr-1" src={Package.logo} height={60} width={60}></img>
+              <img className="icon ion-md-home mr-1" src={Package.logo} height={50} width={50}></img>
             </NavbarBrand>
           </Link>
           <input className="nojs-navbar-check" id="nojs-navbar-check" type="checkbox" aria-label="Menu"/>
-          <label tabIndex="1" htmlFor="nojs-navbar-check" className="nojs-navbar-label mt-2" />
+          {/*<label tabIndex="1" htmlFor="nojs-navbar-check" className="nojs-navbar-label mt-2" />*/}
           <div className="nojs-navbar">
             <Nav navbar>
               <div tabIndex="1" className="dropdown nojs-dropdown">
-                <div className="nav-item">
+                <li className="nav-item">
                   <Link prefetch href="/about">
-                    <span className="nav-link">About</span>
+                    <span className="nav-link black-text">About</span>
                   </Link>
-                </div>
+                </li>
+                <li className="nav-item">
+                  <Link prefetch href="/about">
+                    <span className="nav-link black-text">Learn</span>
+                  </Link>
+                </li>
 
               </div>
             </Nav>
           </div>
         </Navbar>
+        {/* Above = Navbar */}
         <MainBody navmenu={this.props.navmenu} fluid={this.props.fluid} container={this.props.container}>
           {this.props.children}
         </MainBody>
+        {/* Below = Footer */}
         <Container fluid={this.props.fluid}>
           <hr className="mt-3"/>
           <p className="text-muted small">
-            <Link href="https://github.com/iaincollins/nextjs-starter"><a className="text-muted font-weight-bold"><span className="icon ion-logo-github"/> {Package.name} {Package.version}</a></Link>
+            <Link href={Package.repository}><a className="text-muted font-weight-bold"><span className="icon ion-logo-github"/> {Package.name} {Package.version}</a></Link>
             <span> built with </span>
             <Link href="https://github.com/zeit/next.js"><a className="text-muted font-weight-bold">Next.js {Package.dependencies.next.replace('^', '')}</a></Link>
             <span> &amp; </span>
@@ -147,7 +144,7 @@ export class MainBody extends React.Component {
     }
   }
 }
-
+/*
 export class UserMenu extends React.Component {
   constructor(props) {
     super(props)
@@ -167,11 +164,9 @@ export class UserMenu extends React.Component {
 
   render() {
     if (this.props.session && this.props.session.user) {
-      // If signed in display user dropdown menu
       const session = this.props.session
       return (
         <Nav className="ml-auto" navbar>
-          {/*<!-- Uses .nojs-dropdown CSS to for a dropdown that works without client side JavaScript ->*/}
           <div tabIndex="2" className="dropdown nojs-dropdown">
             <div className="nav-item">
               <span className="dropdown-toggle nav-link d-none d-md-block">
@@ -199,18 +194,11 @@ export class UserMenu extends React.Component {
         </Nav>
       )
      } if (this.props.signinBtn === false) {
-       // If not signed in, don't display sign in button if disabled
       return null
     } else {
-      // If not signed in, display sign in button
       return (
         <Nav className="ml-auto" navbar>
           <NavItem>
-            {/**
-              * @TODO Add support for passing current URL path as redirect URL
-              * so that users without JavaScript are also redirected to the page
-              * they were on before they signed in.
-              **/}
             <a href="/auth?redirect=/" className="btn btn-outline-primary" onClick={this.props.toggleModal}><span className="icon ion-md-log-in mr-1"></span> Sign up / Sign in</a>
           </NavItem>
         </Nav>
@@ -249,3 +237,4 @@ export class SigninModal extends React.Component {
     )
   }
 }
+*/

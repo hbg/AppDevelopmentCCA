@@ -1,6 +1,6 @@
 {
-  "name": "App Development CCA",
-  "logo": "/static/hb-lg.png",
+  "name": "app-development-cca",
+  "logo": "/static/ccaappdev.png",
   "version": "7.0.2",
   "description": "A tutorial site for members of the App Development Club.",
   "author": "Harris Beg <harris@harrisbeg.com>",

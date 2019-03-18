@@ -26,10 +26,6 @@ pre {
   font-size: 18px;
 }
 
-.navbar {
-  border-bottom: 1px solid #ddd;
-}
-
 @media (max-width: 768px) {
   .display-2 {
     font-size: 3em;
@@ -56,7 +52,7 @@ pre {
 }
 
 /**
- * This is a fix for Reactstrap 5.0.0-alpha.4 not displaying menus in the 
+ * This is a fix for Reactstrap 5.0.0-alpha.4 not displaying menus in the
  * navbar correcrtly on mobile devices.
  **/
 .navbar .dropdown {
