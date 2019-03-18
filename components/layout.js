@@ -23,7 +23,7 @@ export default class extends React.Component {
       signinBtn: React.PropTypes.boolean
     }
   }
-  
+
   constructor(props) {
     super(props)
     this.state = {
@@ -33,7 +33,7 @@ export default class extends React.Component {
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
-  
+
   async toggleModal(e) {
     if (e) e.preventDefault()
 
@@ -48,7 +48,7 @@ export default class extends React.Component {
       modal: !this.state.modal
     })
   }
-  
+
   render() {
     return (
       <React.Fragment>
@@ -62,7 +62,7 @@ export default class extends React.Component {
         <Navbar light className="navbar navbar-expand-md pt-3 pb-3">
           <Link prefetch href="/">
             <NavbarBrand href="/">
-              <span className="icon ion-md-home mr-1"></span> {Package.name}
+              <img className="icon ion-md-home mr-1" src={Package.logo} height={60} width={60}></img>
             </NavbarBrand>
           </Link>
           <input className="nojs-navbar-check" id="nojs-navbar-check" type="checkbox" aria-label="Menu"/>
@@ -71,28 +71,13 @@ export default class extends React.Component {
             <Nav navbar>
               <div tabIndex="1" className="dropdown nojs-dropdown">
                 <div className="nav-item">
-                  <span className="dropdown-toggle nav-link">Examples</span>
-                </div>
-                <div className="dropdown-menu">
-                  <Link prefetch href="/examples/authentication">
-                    <a href="/examples/authentication" className="dropdown-item">Auth</a>
-                  </Link>
-                  <Link prefetch href="/examples/async">
-                    <a href="/examples/async" className="dropdown-item">Async Data</a>
-                  </Link>
-                  <Link prefetch href="/examples/layout">
-                    <a href="/examples/layout" className="dropdown-item">Layout</a>
-                  </Link>
-                  <Link prefetch href="/examples/routing">
-                    <a href="/examples/routing" className="dropdown-item">Routing</a>
-                  </Link>
-                  <Link prefetch href="/examples/styling">
-                    <a href="/examples/styling" className="dropdown-item">Styling</a>
+                  <Link prefetch href="/about">
+                    <span className="nav-link">About</span>
                   </Link>
                 </div>
+
               </div>
             </Nav>
-            <UserMenu session={this.props.session} toggleModal={this.toggleModal} signinBtn={this.props.signinBtn}/>
           </div>
         </Navbar>
         <MainBody navmenu={this.props.navmenu} fluid={this.props.fluid} container={this.props.container}>
@@ -110,7 +95,6 @@ export default class extends React.Component {
             <span className="ml-2">&copy; {new Date().getYear() + 1900}.</span>
           </p>
         </Container>
-        <SigninModal modal={this.state.modal} toggleModal={this.toggleModal} session={this.props.session} providers={this.state.providers}/>
       </React.Fragment>
     )
   }
@@ -172,7 +156,7 @@ export class UserMenu extends React.Component {
 
    async handleSignoutSubmit(event) {
      event.preventDefault()
-     
+
      // Save current URL so user is redirected back here after signing out
      const cookies = new Cookies()
      cookies.set('redirect_url', window.location.pathname, { path: '/' })
@@ -180,7 +164,7 @@ export class UserMenu extends React.Component {
      await NextAuth.signout()
      Router.push('/')
    }
-   
+
   render() {
     if (this.props.session && this.props.session.user) {
       // If signed in display user dropdown menu
@@ -254,7 +238,7 @@ export class AdminMenuItem extends React.Component {
 export class SigninModal extends React.Component {
   render() {
     if (this.props.providers === null) return null
-    
+
     return (
       <Modal isOpen={this.props.modal} toggle={this.props.toggleModal} style={{maxWidth: 700}}>
         <ModalHeader>Sign up / Sign in</ModalHeader>

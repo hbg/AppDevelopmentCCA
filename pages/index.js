@@ -10,7 +10,7 @@ export default class extends Page {
       <Layout {...this.props} navmenu={false} container={false}>
         <Jumbotron className="text-light rounded-0" style={{
           backgroundColor: 'rgba(73,155,234,1)',
-          background: 'radial-gradient(ellipse at center, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%)',
+          background: 'radial-gradient(ellipse at center, rgba(73,155,0,1) 0%, rgba(32,124,229,1) 100%)',
           boxShadow: 'inset 0 0 100px rgba(0,0,0,0.1)'
           }}>
           <Container className="mt-2 mb-2">
@@ -23,7 +23,7 @@ export default class extends Page {
               <br className="v-block d-lg-none"/> Starter Project
             </h1>
             <p className="lead mb-5">
-              A reference and template for React projects
+              A reference and template for React.js projects
             </p>
             <p className="text-right">
               <a href="https://github.com/iaincollins/nextjs-starter" className="btn btn-outline-light btn-lg"><span className="icon ion-logo-github mr-2"/> Download from GitHub</a>
@@ -86,7 +86,7 @@ export default class extends Page {
           <h2 className="text-center display-4 mt-2 mb-5">Getting Started</h2>
           <p>
             <a href="https://github.com/zeit/next.js">Next.js</a> from <a href="https://zeit.co">Zeit</a> makes creating
-            websites with React easy. 
+            websites with React easy.
           </p>
           <p>
             This project integrates several concepts to show how you can use them together in a Next.js project.
